@@ -25,17 +25,12 @@ A console-based chat application written in Rust that allows you to interact wit
    cd openai_chat
    ```
 
-2. **Set up environment variables**:
-   ```bash
-   cp .env.example .env
-   ```
-
-3. **Edit the `.env` file** and add your DeepSeek API key:
+2. **Create a `.env` file** in the project root and add your DeepSeek API key:
    ```env
    DEEPSEEK_API_KEY=your_deepseek_api_key_here
    ```
 
-4. **Build and run**:
+3. **Build and run**:
    ```bash
    cargo run
    ```
@@ -59,6 +54,9 @@ MAX_TOKENS=4096
 
 # Optional: Temperature for response randomness (default: 0.7)
 TEMPERATURE=0.7
+
+# Optional: Request timeout in seconds (default: 300)
+TIMEOUT=300
 ```
 
 ## Usage
@@ -76,7 +74,7 @@ Once the application is running, you can use these special commands:
 - `/help` - Show help information
 - `/clear` - Clear conversation history
 - `/history` - Show conversation history
-- `/exit` - Exit the application
+- `/exit` or `/quit` - Exit the application
 
 ### Example Session
 
@@ -90,7 +88,7 @@ Special commands:
   /help - Show this help
   /clear - Clear conversation history
   /history - Show conversation history
-  /exit or Ctrl+C - Exit the application
+  /exit, /quit, or Ctrl+C - Exit the application
 
 ────────────────────────────────────────────────────────────
 
@@ -100,6 +98,8 @@ Special commands:
 🤖 DeepSeek: Rust is a systems programming language that focuses on safety, speed, and concurrency...
 
 💬 Enter your message: /exit
+👋 Thank you for using DeepSeek Chat!
+Goodbye! 🚀
 ```
 
 ## Project Structure
@@ -127,6 +127,7 @@ The project uses several key Rust crates:
 - **`reqwest`**: HTTP client for API requests
 - **`serde`**: Serialization/deserialization for JSON handling
 - **`anyhow`**: Error handling with context
+- **`thiserror`**: Derive macros for error types
 - **`dotenv`**: Environment variable management
 - **`colored`**: Colored terminal output
 - **`crossterm`**: Cross-platform terminal manipulation

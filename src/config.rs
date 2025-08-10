@@ -30,8 +30,7 @@ impl Config {
         let api_base = env::var("DEEPSEEK_API_BASE")
             .unwrap_or_else(|_| "https://api.deepseek.com".to_string());
 
-        let model = env::var("DEEPSEEK_MODEL")
-            .unwrap_or_else(|_| "deepseek-chat".to_string());
+        let model = env::var("DEEPSEEK_MODEL").unwrap_or_else(|_| "deepseek-chat".to_string());
 
         let max_tokens = env::var("MAX_TOKENS")
             .unwrap_or_else(|_| "4096".to_string())
