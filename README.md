@@ -12,6 +12,10 @@ A console-based chat application written in Rust that allows you to interact wit
 - 🔧 **Configurable**: Easy configuration via environment variables
 - 💬 **Special Commands**: Built-in commands for enhanced user experience
 
+## 🎥 Demonstration
+
+Watch the application in action: [Video Demonstration](https://disk.yandex.ru/i/-hWWmQsgAOgudg)
+
 ## Prerequisites
 
 - Rust 1.70+ installed
