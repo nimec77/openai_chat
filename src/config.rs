@@ -15,6 +15,8 @@ pub struct Config {
     pub max_tokens: u32,
     /// Temperature for response randomness (0.0-2.0)
     pub temperature: f32,
+    /// Timeout for API requests
+    pub timeout: u64,
 }
 
 impl Config {
@@ -41,12 +43,18 @@ impl Config {
             .parse()
             .context("TEMPERATURE must be a valid number")?;
 
+        let timeout = env::var("TIMEOUT")
+            .unwrap_or_else(|_| "300".to_string())
+            .parse()
+            .context("TIMEOUT must be a valid number")?;
+
         Ok(Config {
             api_key,
             api_base,
             model,
             max_tokens,
             temperature,
+            timeout,
         })
     }
 
@@ -64,6 +72,10 @@ impl Config {
             anyhow::bail!("Max tokens must be greater than 0");
         }
 
+        if self.timeout == 0 {
+            anyhow::bail!("Timeout must be greater than 0");
+        }
+
         Ok(())
     }
 }
@@ -76,6 +88,7 @@ impl Default for Config {
             model: "deepseek-chat".to_string(),
             max_tokens: 4096,
             temperature: 0.7,
+            timeout: 300,
         }
     }
 }

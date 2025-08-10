@@ -97,7 +97,7 @@ impl DeepSeekClient {
         config.validate()?;
 
         let client = Client::builder()
-            .timeout(Duration::from_secs(300))
+            .timeout(Duration::from_secs(config.timeout))
             .user_agent("openai_chat/0.1.0")
             .build()
             .context("Failed to create HTTP client")?;
